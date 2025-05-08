@@ -12,6 +12,11 @@ mod command_bus;
 mod query_bus;
 mod event_handler;
 
+use tower_http::cors::{CorsLayer, Any};
+
+
+
+
 #[tokio::main]
 async fn main() {
     dotenv().ok();
@@ -23,8 +28,16 @@ async fn main() {
 
     // 👉 Khởi động WebSocket Binance trong task nền
     module::market_feed::start_market_feed().await;
+    let store = module::market_feed::start_market_feed().await;
 
-    let app = api::router::build_router();
+    let cors = CorsLayer::new()
+        .allow_origin(Any)
+        .allow_methods(Any)
+        .allow_headers(Any);
+
+    let app = api::router::build_router(store).layer(cors);
+
+    
 
     let port = env::var("PORT")
         .ok()

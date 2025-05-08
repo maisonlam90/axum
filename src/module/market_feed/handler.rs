@@ -1,9 +1,8 @@
 use axum::{Json, response::IntoResponse};
 use std::collections::HashMap;
+use super::state::SharedPriceStore;
 
-pub async fn get_price() -> impl IntoResponse {
-    let mut prices = HashMap::new();
-    prices.insert("BTCUSDT", "62450.00");
-    prices.insert("ETHUSDT", "3050.23");
-    Json(prices)
+pub async fn get_price(store: SharedPriceStore) -> impl IntoResponse {
+    let lock = store.lock().await;
+    Json(lock.clone())
 }
