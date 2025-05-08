@@ -1,0 +1,37 @@
+# Rust build
+/target
+**/*.rs.bk
+
+# Cargo package
+/Cargo.lock
+
+# IDE/editor
+.idea/
+.vscode/
+*.swp
+*.bak
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+
+# SQLx (optional offline mode)
+/sqlx-data.json
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# GitHub Actions cache (optional)
+.github/workflows/*.cache
+
+# Generated files
+*.generated.rs
