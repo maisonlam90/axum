@@ -17,3 +17,9 @@ futures-util = "0.3"
 url = "2"
 async-trait = "0.1"
 anyhow = "1.0"
+uuid = { version = "1", features = ["v4", "serde"] }
+argon2 = { version = "0.5", features = ["std"] }
+password-hash = "0.5"
+rand_core = "0.6"
+thiserror = "1.0"
+axum-macros = "0.4"
